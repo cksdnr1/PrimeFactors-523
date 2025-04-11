@@ -1,7 +1,7 @@
 build/
 .clang-format
 default.profraw
-googletest
+googletest/
 .DS_Store
 
 # Prerequisites
