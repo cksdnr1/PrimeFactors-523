@@ -1,6 +1,6 @@
 build/
 .clang-format
-default.profaw
+default.profraw
 googletest
 .DS_Store
 
