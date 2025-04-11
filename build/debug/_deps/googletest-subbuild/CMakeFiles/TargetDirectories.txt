@@ -1,3 +1,0 @@
-/Users/chanwooklee/PJ/CRA/TDD/8.PrimeFactor/vscode/build/debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
-/Users/chanwooklee/PJ/CRA/TDD/8.PrimeFactor/vscode/build/debug/_deps/googletest-subbuild/CMakeFiles/edit_cache.dir
-/Users/chanwooklee/PJ/CRA/TDD/8.PrimeFactor/vscode/build/debug/_deps/googletest-subbuild/CMakeFiles/rebuild_cache.dir

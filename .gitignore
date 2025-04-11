@@ -1,3 +1,9 @@
+build/
+.clang-format
+default.profaw
+googletest
+.DS_Store
+
 # Prerequisites
 *.d
 
