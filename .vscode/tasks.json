@@ -1,0 +1,173 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean Build",
+            "type": "shell",
+            "command": "rm -rf build",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "detail": "Clean the build directory"
+        },
+        {
+            "label": "Configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                ".",
+                "-B",
+                "build/debug",
+                "-G",
+                "Ninja",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+                "-DENABLE_COVERAGE=ON",
+                "-DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang",
+                "-DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Clean Build",
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Configure Debug build with CMake"
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build/debug",
+                "--config",
+                "Debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Configure",
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Build the project in Debug mode using CMake"
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "./build/debug/MyProject",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Build"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new", // 실행 후 새로운 터미널 패널을 여는 설정
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Run the project in Debug mode"
+        },
+        {
+            "label": "Run_Test",
+            "type": "shell",
+            "command": "./build/debug/Test",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Build"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new", // 실행 후 새로운 터미널 패널을 여는 설정
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Run the project in Debug mode"
+        },
+        {
+            "label": "Run_Test_With_Coverage",
+            "type": "shell",
+            "command": "LLVM_PROFILE_FILE=\"build/debug/Test.profraw\" ./build/debug/Test",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Build"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Run tests with coverage profile output"
+        },
+        {
+            "label": "Generate_Coverage_Report",
+            "type": "shell",
+            "command": "sh",
+            "args": [
+                "-c",
+                "/opt/homebrew/opt/llvm/bin/llvm-profdata merge -sparse build/debug/Test.profraw -o build/debug/Test.profdata && /opt/homebrew/opt/llvm/bin/llvm-cov show ./build/debug/Test -instr-profile=build/debug/Test.profdata > build/debug/coverage.txt"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Run_Test_With_Coverage"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Generate coverage report from test run"
+        },
+        {
+            "label": "Generate_HTML_Coverage",
+            "type": "shell",
+            "command": "sh",
+            "args": [
+                "-c",
+                "/opt/homebrew/opt/llvm/bin/llvm-profdata merge -sparse build/debug/Test.profraw -o build/debug/Test.profdata && /opt/homebrew/opt/llvm/bin/llvm-cov show ./build/debug/Test -instr-profile=build/debug/Test.profdata -format=html -output-dir=build/debug/coverage_html && open build/debug/coverage_html/index.html"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Run_Test_With_Coverage"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Generate HTML coverage report and open in browser"
+        }
+    ]
+}

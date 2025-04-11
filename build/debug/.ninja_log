@@ -1,0 +1,15 @@
+# ninja log v6
+2	30	1744343894610959994	CMakeFiles/MyProject.dir/main.cpp.o	cf370e26ffdf386
+1	31	1744343894610206316	CMakeFiles/Core.dir/src/prime-factors.cpp.o	1ae0de0c63bc9c63
+31	79	1744343894640624553	libCore.a	3e9e825567bd21de
+1	483	1744343894610469528	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	20da506ab4f43d67
+1	544	1744343894610332568	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o	fbce0d00b6499c88
+2	571	1744343894611522710	CMakeFiles/Test.dir/test/prime-factors_test.cpp.o	4621710fff116adf
+1	830	1744343894610060398	_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o	11449e04ef14b242
+0	1371	1744343894609812977	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	61047606f161700b
+1372	1403	1744343895980885079	lib/libgtest.a	c8ec68fd1ad581c4
+1403	1428	1744343896012790296	lib/libgtest_main.a	335f1cfa5dbe5200
+1403	1430	1744343896012607835	lib/libgmock.a	b48265f5f3268f2
+1430	1454	1744343896039736273	lib/libgmock_main.a	f82840086d8edfb7
+1454	1506	1744343896063786542	MyProject	a195f268fb994189
+1455	1509	1744343896063955753	Test	6df52623354297
