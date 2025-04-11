@@ -3,6 +3,8 @@ build/
 default.profraw
 googletest/
 .DS_Store
+**/*.dSYM/**/*
+
 
 # Prerequisites
 *.d
